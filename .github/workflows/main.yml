@@ -9,6 +9,11 @@ on:
 jobs: 
   build: 
     runs-on: macOS-latest
+    permissions:
+           checks: write
+           contents: read
+           issues: read
+           pull-requests: write
     strategy:
       matrix:
         java_version: [11]
