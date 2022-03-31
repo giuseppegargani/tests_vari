@@ -9,7 +9,7 @@
     DEBUG DI GRADLE IN ANDROID STUDIO
     - https://stackoverflow.com/questions/22017433/debugging-gradle-build-files-in-intellij-android-studio
     - https://www.jetbrains.com/help/idea/getting-started-with-groovy.html#test_groovy
-    - Project.apply    usato per applicare il plugin al progetto
+    - Project.apply    usato per applicare il plugin al progett
  */
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
