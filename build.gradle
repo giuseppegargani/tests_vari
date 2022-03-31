@@ -1,0 +1,70 @@
+/* Documentqzione
+    - Come configurare task test sotto del plugin android: https://github.com/kotest/kotest/issues/622
+    - test selettivo DA LINEA DI COMANDO: gradle testDebugUnitTest --tests ExampleUnitTest
+    - Viene stampato anche una lista dei risultati!!! su html
+    - Si devono registrare le task fatte con groovy ( per essere applicate nel progetto di riferimento!!!)
+    - come si costruisce una custom task https://docs.gradle.org/current/userguide/custom_tasks.html
+    - tutorial espressioni regolari di groovy: https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/
+    - Vogella tutorial gradle con esercizi: https://www.vogella.com/tutorials/GradleTutorial/article.html
+    DEBUG DI GRADLE IN ANDROID STUDIO
+    - https://stackoverflow.com/questions/22017433/debugging-gradle-build-files-in-intellij-android-studio
+    - https://www.jetbrains.com/help/idea/getting-started-with-groovy.html#test_groovy
+    - Project.apply    usato per applicare il plugin al progetto
+ */
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+abstract class GreetingTask extends DefaultTask {
+    @TaskAction
+    def greet() {
+        println 'Ciao da Giuseppe!!!'
+        println '...anche un altro messaggio...'
+        println ' e poi un terzo messaggio'
+    }
+}
+
+tasks.register('ciao', GreetingTask)
+
+//legge un file in windows e lo stampa in console!!!!!!!!
+abstract class Example extends DefaultTask {
+    @TaskAction
+    def greet() {
+        new File("C:/Users/giuse/Documents/Example.txt").eachLine {
+            line -> println "line : $line";
+        }
+    }
+}
+tasks.register('lettura', Example)
+
+//altro modo di scrivere ed implementare task!!!
+class GreetingPlugin implements Plugin<Project> {
+    //applica ad un progetto un plugin!!! ma si lancia con il nome del plugin!!!!!!
+    void apply(Project project) {
+        project.task('ciaoBeppe') {
+            doLast {
+                println 'ciao da Giuseppe e Gradle'
+            }
+        }
+    }
+}
+// Apply the plugin
+apply plugin: GreetingPlugin
+
+
