@@ -50,7 +50,7 @@ android {
         unitTests.all {
             filter {
                 //se si mette il seguente esegue solo il primo test (da linea di comando e build!!!)
-                //includeTestsMatching "ExampleUnitTest.primo_test"
+                includeTestsMatching "ExampleUnitTest.primo_test"
                 //fa' tutti i primi test delle due classi (oppure con Regex!!!)
                 //includeTestsMatching "*.primo_test"
             }
