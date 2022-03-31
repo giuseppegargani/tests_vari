@@ -54,7 +54,7 @@ abstract class Example extends DefaultTask {
 tasks.register('lettura', Example)
 
 //altro modo di scrivere ed implementare task!!!
-class GreetingPlugin implements Plugin<Project> {
+class Eccomi implements Plugin<Project> {
     //applica ad un progetto un plugin!!! ma si lancia con il nome del plugin!!!!!!
     void apply(Project project) {
         project.task('ciaoBeppe') {
@@ -65,6 +65,6 @@ class GreetingPlugin implements Plugin<Project> {
     }
 }
 // Apply the plugin
-apply plugin: GreetingPlugin
+apply plugin: Eccomi
 
 
