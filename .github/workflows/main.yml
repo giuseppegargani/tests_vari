@@ -22,11 +22,6 @@ jobs:
         
     steps:
     
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-         python-version: 3.8
-    
       - name: Install coreutils for macOS
         run: brew install coreutils
         
@@ -80,6 +75,9 @@ jobs:
         if: always()
         with:
           files: "test-results/**/*.xml"
+          
+      - name: Conclusion
+        run: echo "Conclusion is ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}"
         
       #- name: verifica test
         #run: ./gradlew help --task :app:test
