@@ -67,20 +67,13 @@ jobs:
      # Si può usare assemble invece di build (che è assemble + check)
       - name: Build Project
         run: ./gradlew assemble --stacktrace
-        
-      - name: Get XML
-        id: getxml
-        uses: mavrosxristoforos/get-xml-info@1.0
-        with:
-          xml-file: 'app/build/reports/*.xml'
-          xpath: '//testcase'
       
       # si puo' anche mettere senza indicazione dei nodi e provare con il nome del file
       - name: Get XML
         id: getxml2
         uses: mavrosxristoforos/get-xml-info@1.0
         with:
-          xml-file: 'app/build/test-results/*.xml'
+          xml-file: 'app/build/test-results/testDebugUnitTest/binary/TEST-com.example.tests_vari.ExampleUnitTest.xml'
           xpath: '//testcase' 
            
       - name: Create Release
