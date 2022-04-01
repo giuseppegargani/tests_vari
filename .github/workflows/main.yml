@@ -72,11 +72,11 @@ jobs:
       - name: Testa
         run: ./gradlew test
         
-      - name: List Files
-        run: ls ${{ github.workspace }}
+      #- name: List Files
+        #run: ls ${{ github.workspace }}
         
       - name: lista progetto
-        run: ls 'app/build'
+        run: ls 'app/build/test-results'
       
       # si puo' anche mettere senza indicazione dei nodi e provare con il nome del file
       #- name: Get XML
