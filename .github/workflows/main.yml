@@ -1,4 +1,4 @@
-# Questa è una prova di pull condizionato ad una chiave utente e una push condizionata al controllo dei test
+# Questa è una prova di pull condizionato ad una chiave utente e una push condizionata al controllo dei tes
 
 name: Android CI Testing prima di push
 on: 
