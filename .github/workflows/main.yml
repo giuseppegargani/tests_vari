@@ -9,6 +9,11 @@ on:
 jobs: 
   build: 
     runs-on: macOS-latest
+    permissions:
+           checks: write
+           contents: read
+           issues: read
+           pull-requests: write
     strategy:
       matrix:
         java_version: [11]
@@ -61,13 +66,18 @@ jobs:
       #- name: Costruisci con Gradle
       #  run: ./gradlew build --warning-mode all
       
-      - name: Testa
-        run: ./gradlew test
+      # comando veramente di base (ma ricordiamo che e' possibile skippare i tests direttamente nella classe di android)
+      #- name: Testa
+        #run: ./gradlew test
         
-      #- name: verifica test
-        #run: ./gradlew help --task :app:test
+      # pubblica risultati test.       Documentazione: https://github.com/marketplace/actions/publish-unit-test-results
+      #- name: Publish Unit Test Results
+        #uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        #if: always()
+        #with:
+          #files: "test-results/**/*.xml"
         
-      #test selettivo
+      #test selettivo per i singoli test e da assegnare a variabile (espressione condizionale) a seconda del risultato
       #- name: Primo test singolo
         #run: ./gradlew testDebugUnitTest --tests ExampleUnitTest.primotest
       
@@ -84,7 +94,7 @@ jobs:
         #env:
           #ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           
-      #vecchio vecchio test strumentale (non messo)
+      #vecchio vecchio test strumentale (nella versione iniziale era stato tolto )
       #- name: Run Instrumentation Tests
        # uses: vgaidarji/android-github-actions-emulator@v1.0.1
         #with:
@@ -96,7 +106,7 @@ jobs:
       - name: Reclaim Memory
         run: ./gradlew --stop && jps|grep -E 'KotlinCompileDaemon|GradleDaemon'| awk '{print $1}'| xargs kill -9
         
-        #Adesso si fanno i check che abbiamo omesso in assemble - Vedi articolo per differenza tra check e test!!!!!
+        #Adesso si fanno i check che abbiamo omesso in assemble - Vedi articolo per differenza tra check e test!!!!! check e' per test composti
       #- name: Final Checks
         #run: ./gradlew check --stacktrace
         
