@@ -1,14 +1,55 @@
 /* CONCETTI
  - Android ufficiale:  Opzioni di test avanzate!!! https://developer.android.com/studio/test/advanced-test-setup
+
  - Si puo' cambiare anche la directory dove vengono salvati i risultati dei tests: (vedi sopra)
+
  - Opzioni di textInstrumentalRunner: https://medium.com/stepstone-tech/exploring-androidjunitrunner-filtering-options-df26d30b4f60
+
  - Annotazioni: https://pspdfkit.com/blog/2020/filtering-tests-in-android/
+
  - 6 MIGLIORI TUTORIALS PER GRADLE!!!! https://tomgregory.com/best-gradle-tutorials-for-beginners/
+
  - se dentro ad unitTests.all di mette filter {includeTestsMatching "ExampleUnitTest.primo_test"}   esegue solo il primo test (esempio)  !!!!!! e si possono cercare i test che si vuole!!!!
+
  - esempio filter: https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/testing/TestFilter.html
+
  - Si puo' generare un file xml per i test CI
+
  - Documentazione TestLogging: https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/testing/logging/TestLoggingContainer.html
+
+ - permessi per le azioni: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+
+ - scrivere tests for librerie android!!!!! https://medium.com/geekculture/write-your-tests-for-your-android-libraries-and-plugins-3ec4b5da2faf
+
+ - testare una build con testKit https://docs.gradle.org/current/userguide/test_kit.html
+
+ - Ci vuole il test dei plugin e dei tasks!!!! vedi documentazione ufficiale!!!!
+
+ -- Come si modificano Tasks di un certo tipo????
+
+ - pubblicare i risultati dei tuoi tests: https://github.com/marketplace/actions/publish-unit-test-results
+
+ - Articolo molto interessante su DAG e diversi momenti di esecuzione!!!!!!!!!! https://www.devopsschool.com/blog/what-is-gradle-dag-directed-acyclic-graph/
+
+ - Come si aggiunge una task ad un subproject (mettendo apply e il plugin!!!) https://stackoverflow.com/questions/44943330/adding-gradle-task-to-a-subproject-in-method
+
+ - Come si inseriscono tasks dentro un subproject!!! https://discuss.gradle.org/t/gradle-task-in-subproject/23071
+   Come si vede con la task cavolino (che non ha dipendenze) e stampa in console!!!! e fa' parte del subproject :app    !!!!
+
+ - Tutorial su come leggere un file xml: https://www.youtube.com/watch?v=ew09HvT01MQ
+
+ - AGGREGARE TESTS. C'e' un plugin per github actions? come in locale https://docs.gradle.org/current/userguide/test_report_aggregation_plugin.html#test_report_aggregation_plugin
+
+ - Si puo' modificare la directory dove si salvano i risultati modificando delle variabili
+    reporting.baseDir = "my-reports"
+    testResultsDirName = "$buildDir/my-test-results"
+
+ - Si puo' registrare una task che visualizza dove sono stati salvati
+    logger.quiet(rootDir.toPath().relativize(project.reportsDir.toPath()).toString())
+    logger.quiet(rootDir.toPath().relativize(project.testResultsDir.toPath()).toString())
+
  */
+
 
 plugins {
     id 'com.android.application'
@@ -43,10 +84,7 @@ android {
     }
 
     //qui che vanno messi i cambi di configurazione di test!!!!
-    testOptions {
-        /*filter {
-            includeTestsMatching "ExampleUnitTest"
-        }*/
+    /*testOptions {
         unitTests.all {
             filter {
                 //se si mette il seguente esegue solo il primo test (da linea di comando e build!!!)
@@ -55,8 +93,45 @@ android {
                 //includeTestsMatching "*.primo_test"
             }
             testLogging {
+                //serve per stampare in console i risultati relativi ai seguenti eventi (verificato)
                 events "passed", "skipped", "failed", "standardOut", "standardError"
             }
+        }
+    }*/
+    //questa task copia
+    task helloandroid(type: Copy) {
+        //si puo' mettere anche che dipende dalla build!!!! ma in questo caso non e' necessario!!!!!!!!!
+        //dependsOn build
+        doLast {  // or doFirst depending on the behaviour you want
+            new File("C:/Users/giuse/Documents/Example.txt").eachLine {
+                line -> println "line : $line";
+            }
+        }
+    }
+    //questa task stampa in console (e non ha dipendenze)!!!!!!!
+    task cavolino(){
+        doLast {
+            println('eccomi qui!!!!')
+        }
+    }
+
+    //questa prova a rilanciare il test
+    task rilanciatest(){
+        dependsOn build
+        doLast {
+            println('accidempolina')
+        }
+    }
+
+    //Si modificano queste variabili per modificare il percorso di salvataggio dei risultati
+    //reporting.baseDir = "my-reports"
+    //testResultsDirName = "$buildDir/my-test-results"
+
+    //per visualizzare la directory di salvataggio dei files
+    tasks.register('showDirs') {
+        doLast {
+            logger.quiet(rootDir.toPath().relativize(project.reportsDir.toPath()).toString())
+            logger.quiet(rootDir.toPath().relativize(project.testResultsDir.toPath()).toString())
         }
     }
 }
@@ -71,3 +146,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
