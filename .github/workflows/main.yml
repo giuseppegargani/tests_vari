@@ -67,20 +67,26 @@ jobs:
      # Si può usare assemble invece di build (che è assemble + check)
       - name: Build Project
         run: ./gradlew assemble --stacktrace
+        
+      - name: List Files
+        run: ls ${{ github.workspace }}
+        
+      - name: lista progetto
+        run: ls 'app/build'
       
       # si puo' anche mettere senza indicazione dei nodi e provare con il nome del file
-      - name: Get XML
-        id: getxml2
-        uses: mavrosxristoforos/get-xml-info@1.0
-        with:
-          xml-file: 'app/build/test-results/testDebugUnitTest/binary/TEST-com.example.tests_vari.ExampleUnitTest.xml'
-          xpath: '//testcase' 
+      #- name: Get XML
+        #id: getxml2
+        #uses: mavrosxristoforos/get-xml-info@1.0
+        #with:
+          #xml-file: 'app/build/test-results/testDebugUnitTest/binary/TEST-com.example.tests_vari.ExampleUnitTest.xml'
+          #xpath: '//testcase' 
            
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-         artifacts: 'another-file.zip'
-         tag: ${{ steps.getxml.outputs.info }}
+      #- name: Create Release
+        #uses: ncipollo/release-action@v1
+        #with:
+         #artifacts: 'another-file.zip'
+         #tag: ${{ steps.getxml.outputs.info }}
      
       #- name: Costruisci con Gradle
       #  run: ./gradlew build --warning-mode all
