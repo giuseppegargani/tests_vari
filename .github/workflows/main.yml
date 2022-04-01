@@ -68,34 +68,33 @@ jobs:
       - name: Build Project
         run: ./gradlew assemble --stacktrace
         
-      - name: Get XML
-        id: getxml
-        uses: mavrosxristoforos/get-xml-info@1.0
-        with:
-          xml-file: 'app/build/reports/*.xml'
-          xpath: '//testcase'
+     # comando veramente di base (ma ricordiamo che e' possibile skippare i tests direttamente nella classe di android)
+      - name: Testa
+        run: ./gradlew test
+        
+      - name: List Files
+        run: ls ${{ github.workspace }}
+        
+      - name: lista progetto
+        run: ls 'app/build'
       
       # si puo' anche mettere senza indicazione dei nodi e provare con il nome del file
-      - name: Get XML
-        id: getxml2
-        uses: mavrosxristoforos/get-xml-info@1.0
-        with:
-          xml-file: 'app/build/test-results/*.xml'
-          xpath: '//testcase' 
+      #- name: Get XML
+        #id: getxml2
+        #uses: mavrosxristoforos/get-xml-info@1.0
+        #with:
+          #xml-file: 'app/build/test-results/testDebugUnitTest/binary/TEST-com.example.tests_vari.ExampleUnitTest.xml'
+          #xpath: '//testcase' 
            
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-         artifacts: 'another-file.zip'
-         tag: ${{ steps.getxml.outputs.info }}
+      #- name: Create Release
+        #uses: ncipollo/release-action@v1
+        #with:
+         #artifacts: 'another-file.zip'
+         #tag: ${{ steps.getxml.outputs.info }}
      
       #- name: Costruisci con Gradle
       #  run: ./gradlew build --warning-mode all
       
-      # comando veramente di base (ma ricordiamo che e' possibile skippare i tests direttamente nella classe di android)
-      #- name: Testa
-        #run: ./gradlew test
-        
       # pubblica risultati test.       Documentazione: https://github.com/marketplace/actions/publish-unit-test-results
       #- name: Publish Unit Test Results
         #uses: EnricoMi/publish-unit-test-result-action/composite@v1
