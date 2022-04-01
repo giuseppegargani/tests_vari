@@ -94,8 +94,8 @@ jobs:
           path: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
           from: 'xml'
           to: 'yaml'
-      - name: Print yaml2xml result
-        run: echo "${{ steps.yaml2xml.outputs.data }}"
+      - name: Print xml2yaml result
+        run: echo "${{ steps.xml2yaml.outputs.data }}"
            
       #- name: Create Release
         #uses: ncipollo/release-action@v1
