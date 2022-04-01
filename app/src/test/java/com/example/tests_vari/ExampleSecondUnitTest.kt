@@ -18,13 +18,13 @@ class ExampleSecondUnitTest {
     }
 
     //il secondo test e' sbagliato
-    @Test
+    //@Test
     fun secondo_test() {
         assertEquals(4, 3 + 2)
     }
 
     //il terzo test pure e' sbagliato
-    @Test
+    //@Test
     fun terzo_test(){
         assertEquals(4, 3 + 5)
     }
