@@ -89,13 +89,13 @@ jobs:
           #xml-file: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
           #xpath: '//testcase' 
       - uses: fabasoad/yaml-json-xml-converter-action@main
-        id: xml2yaml
+        id: xml2json
         with:
           path: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
           from: 'xml'
-          to: 'yaml'
-      - name: Print xml2yaml result
-        run: echo "${{ steps.xml2yaml.outputs.data }}"
+          to: 'json'
+      - name: Print xml2json result
+        run: echo "${{ steps.xml2json.outputs.data }}"
            
       #- name: Create Release
         #uses: ncipollo/release-action@v1
