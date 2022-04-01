@@ -68,6 +68,10 @@ jobs:
       - name: Build Project
         run: ./gradlew assemble --stacktrace
         
+     # comando veramente di base (ma ricordiamo che e' possibile skippare i tests direttamente nella classe di android)
+      - name: Testa
+        run: ./gradlew test
+        
       - name: List Files
         run: ls ${{ github.workspace }}
         
@@ -91,10 +95,6 @@ jobs:
       #- name: Costruisci con Gradle
       #  run: ./gradlew build --warning-mode all
       
-      # comando veramente di base (ma ricordiamo che e' possibile skippare i tests direttamente nella classe di android)
-      #- name: Testa
-        #run: ./gradlew test
-        
       # pubblica risultati test.       Documentazione: https://github.com/marketplace/actions/publish-unit-test-results
       #- name: Publish Unit Test Results
         #uses: EnricoMi/publish-unit-test-result-action/composite@v1
