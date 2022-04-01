@@ -60,6 +60,30 @@
 
  - Si puo' usare Ant
 
+ - Gradle dependency management: https://www.youtube.com/watch?v=w5qCmvS9JGE
+   articolo: https://pspdfkit.com/blog/2018/moving-your-gradle-build-scripts-to-kotlin/
+   altro video youtube: https://www.youtube.com/watch?v=zVml1aua9AE
+   articolo medium: https://proandroiddev.com/better-dependencies-management-using-buildsrc-kotlin-dsl-eda31cdb81bf
+
+ - Parse XML
+    https://www.baeldung.com/groovy-xml
+
+ - Si possono convertire i risultati direttamente in json (per impostazioni di gradle)? sarebbe perfino meglio!!!!
+
+ - Migrazione a Kotlin (per build) da preferirsi!!!!! https://developer.android.com/studio/build/migrate-to-kts
+   Sempre Gradle ma con Kotlin!!!! documentazione ufficiale: https://docs.gradle.org/nightly/userguide/migrating_from_groovy_to_kotlin_dsl.html#applying_plugins
+
+ - ARTICOLO STORICO SU JUNIT TEST: https://github.com/sarven/unit-testing-tips !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ - Ci sono github actions che convertono leggono XML? o convertono in Json? (marketPlace)  https://github.com/search?q=convert+xml+in+json
+
+ - Lettore di XML per github actions!!! https://github.com/marketplace/actions/get-xml-info  !!!!!
+
+ - Ma si puo' anche convertire HTML in Json se si ritiene opportuno!!!
+
+ - Ma le actions sono pubbliche e si puo' leggere il codice con cui sono fatte!!!
+
+ - Possibile leggere valori, e salvarli come artifact e zip!!!     https://github.com/marketplace/actions/get-xml-info
 
  */
 
@@ -150,7 +174,7 @@ android {
     }
 
     //giuseppe
-    configurations {
+    /*configurations {
         groovy
     }
     //giuseppe
@@ -161,7 +185,7 @@ android {
     task downloadGroovy2(type: Copy) {
         from configurations.groovy
         into file('groovy-xml-4.0.0.jar')
-    }
+    }*/
     //Si modificano queste variabili per modificare il percorso di salvataggio dei risultati
     //reporting.baseDir = "my-reports"
     //testResultsDirName = "$buildDir/my-test-results"
@@ -209,6 +233,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'org.codehaus.groovy:groovy-all:2.4.15'
+    //implementation 'org.codehaus.groovy:groovy-all:2.4.15'
+    //localGroovy()
 }
 
