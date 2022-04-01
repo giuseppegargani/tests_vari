@@ -95,6 +95,7 @@ jobs:
           from: 'xml'
           to: 'json'
       - name: Print xml2json result
+        continue-on-error: true
         run: echo "${{ steps.xml2json.outputs.data }}"
         
       #Stampa per verificarne la correttezza e utili nel caso di problemi
