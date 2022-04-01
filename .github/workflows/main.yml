@@ -96,6 +96,32 @@ jobs:
           to: 'json'
       - name: Print xml2json result
         run: echo "${{ steps.xml2json.outputs.data }}"
+        
+      #Stampa per verificarne la correttezza e utili nel caso di problemi
+      - name: echo-default-env-variables
+        run: |
+            echo "Home: ${HOME}"
+            echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+            echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+            echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+            echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+            echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+            echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+            echo "GITHUB_SHA: ${GITHUB_SHA}"
+            echo "GITHUB_REF: ${GITHUB_REF}"
+            echo "GITHUB_BASE_REF: ${GITHUB_BASE_REF}"
+    
+      - name: Update latest version in realtime database
+        uses: w9jds/firebase-trigger@master
+        #env:
+          #GITHUB_CONTEXT: ${{ toJSON(github.repository) }}
+          #NOME_REPOSITORY: 
+        with:
+          credentials: ${{ secrets.FIREBASE_CREDENTIALS }}
+          databaseUrl: https://databasericette-beeb7.firebaseio.com
+          path: "${{ github.repository }}"
+          #Si devono mettere come segreto!!!
+          value: "${{ github.repository }}"
            
       #- name: Create Release
         #uses: ncipollo/release-action@v1
