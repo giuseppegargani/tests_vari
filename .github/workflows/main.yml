@@ -84,7 +84,7 @@ jobs:
           xpath: '//testcase' 
            
       - name: Create Release
-        uses: some-random/release-action@v1
+        uses: ncipollo/release-action@v1
         with:
          artifacts: 'another-file.zip'
          tag: ${{ steps.getxml.outputs.info }}
