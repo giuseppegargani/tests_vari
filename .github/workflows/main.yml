@@ -82,19 +82,20 @@ jobs:
         run: ls 'app/build/test-results/testReleaseUnitTest'
       
       # si puo' anche mettere senza indicazione dei nodi e provare con il nome del file
-      - name: Get XML
-        id: getxml
-        uses: mavrosxristoforos/get-xml-info@1.0
+      #- name: Get XML
+        #id: getxml
+        #uses: mavrosxristoforos/get-xml-info@1.0
+        #with:
+          #xml-file: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
+          #xpath: '//testcase' 
+      - uses: fabasoad/yaml-json-xml-converter-action@main
+        id: xml2yaml
         with:
-          xml-file: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
-          xpath: '//testcase' 
-          
-      - name: Get XML
-        id: getxml2
-        uses: mavrosxristoforos/get-xml-info@1.0
-        with:
-          xml-file: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
-          xpath: 'testcase' 
+          path: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
+          from: 'xml'
+          to: 'yaml'
+      - name: Print yaml2xml result
+        run: echo "${{ steps.yaml2xml.outputs.data }}"
            
       #- name: Create Release
         #uses: ncipollo/release-action@v1
