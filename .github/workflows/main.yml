@@ -76,7 +76,10 @@ jobs:
         #run: ls ${{ github.workspace }}
         
       - name: lista progetto
-        run: ls 'app/build/test-results'
+        run: ls 'app/build/test-results/testDebugUnitTest'
+        
+      - name: lista progetto2
+        run: ls 'app/build/test-results/testReleaseUnitTest'
       
       # si puo' anche mettere senza indicazione dei nodi e provare con il nome del file
       #- name: Get XML
