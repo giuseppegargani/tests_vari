@@ -12,6 +12,24 @@
     - Project.apply    usato per applicare il plugin al progett
  */
 
+/* CODICE con spiegazioni
+    Codice per configurazione groovy:
+
+    configurations {
+        groovy
+    }
+    dependencies {
+        groovy 'org.apache.groovy:groovy-all:4.0.0'
+    }
+    task downloadGroovy(type: Copy) {
+        from configurations.groovy
+        into file('groovy-xml-4.0.0.jar')
+    }
+
+
+
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -27,17 +45,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-//messo da giuseppe
-/*configurations {
-    groovy
-}
-dependencies {
-    groovy 'org.apache.groovy:groovy-all:4.0.0'
-}*/
-/*task downloadGroovy(type: Copy) {
-    from configurations.groovy
-    into file('groovy-xml-4.0.0.jar')
-}*/
 
 task clean(type: Delete) {
     delete rootProject.buildDir

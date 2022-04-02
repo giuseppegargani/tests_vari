@@ -1,3 +1,5 @@
+
+
 /* CONCETTI
  - Android ufficiale:  Opzioni di test avanzate!!! https://developer.android.com/studio/test/advanced-test-setup
 
@@ -85,12 +87,38 @@
 
  - Possibile leggere valori, e salvarli come artifact e zip!!!     https://github.com/marketplace/actions/get-xml-info
 
+ - Dopo test il percorso e' il seguente: 'app/build/test-results/testDebugUnitTest' e i files sono   (a seconda dei file presenti!!!!)
+    TEST-com.example.tests_vari.ExampleSecondUnitTest.xml
+    TEST-com.example.tests_vari.ExampleUnitTest.xml
+
+ - per dare comando di listare una directory con github actions: Run ls 'app/build/test-results/testDebugUnitTest'
+
+ - Per eseguire uno step anche se il precedente ha fallito: https://stackoverflow.com/questions/58858429/how-to-run-a-github-actions-step-even-if-the-previous-step-fails-while-still-f
+    CI SONO TANTISSIMI CASI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    CONTINUE ON ERROR!!!
+
+ - Le credenziali di FIREBASE_CREDENTIALS  (che vengono date in automatico) sono l'unico dato necessario e devono essere inserite (come segreto) comprensive delle parentesi grafe!!!!!!!
+    Si puo' segnare anche un percorso di salvataggio dei dati
+
+ - Github action che converte da xml in json https://github.com/marketplace/actions/yaml-json-xml-converter-action
+
+ - importare dipendenze esterne: https://stackoverflow.com/questions/25660166/how-to-add-a-jar-in-external-libraries-in-android-studio
+
+ - TUTORIALSPOINT SU GROOVY ha spiegazione e PLAYGROUND!!!!!!!!  https://www.tutorialspoint.com/groovy/groovy_closures.htm
+
+ - Creare una libreria android (documentazione ufficiale) https://developer.android.com/studio/projects/android-library
+
+ - Sito con tantissime spiegazioni su groovy!!!! https://code-maven.com/groovy-json
+
+ - ESPRESSIONI CONDIZIONALI IN GITHUB ACTIONS!!!!!! sono molto interessanti!!!! if()
+
+ - come lavorare con gradle Logger: https://stackoverflow.com/questions/3963708/gradle-how-to-display-test-results-in-the-console-in-real-time!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    e creare una libreria in android!!!
  */
 
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    //id 'kotlin-android-extensions'
 }
 
 android {
@@ -108,16 +136,6 @@ android {
     buildFeatures {
         dataBinding true
     }
-    /*configurations {
-        groovy
-    }
-    dependencies {
-        groovy 'org.apache.groovy:groovy-all:4.0.0'
-    }
-    task downloadGroovy(type: Copy) {
-        from configurations.groovy
-        into file('groovy-xml-4.0.0.jar')
-    }*/
 
     buildTypes {
         release {
@@ -149,7 +167,7 @@ android {
         }
     }*/
     //questa task copia
-    task helloandroid(type: Copy) {
+    /*task helloandroid(type: Copy) {
         //si puo' mettere anche che dipende dalla build!!!! ma in questo caso non e' necessario!!!!!!!!!
         //dependsOn build
         doLast {  // or doFirst depending on the behaviour you want
@@ -157,9 +175,9 @@ android {
                 line -> println "line : $line";
             }
         }
-    }
+    }*/
     //questa task stampa in console (e non ha dipendenze)!!!!!!!
-    task cavolino(){
+    /*task cavolino(){
         doLast {
             println('eccomi qui!!!!')
         }
@@ -171,7 +189,7 @@ android {
         doLast {
             println('accidempolina')
         }
-    }
+    }*/
 
     //giuseppe
     /*configurations {
@@ -190,15 +208,15 @@ android {
     //reporting.baseDir = "my-reports"
     //testResultsDirName = "$buildDir/my-test-results"
 
-    //per visualizzare la directory di salvataggio dei files
-    tasks.register('showDirs') {
+    //per visualizzare la directory di salvataggio dei files !!!!!!!!!
+    /*tasks.register('showDirs') {
         doLast {
             println project
             def progetto = project
             logger.quiet(rootDir.toPath().relativize(project.reportsDir.toPath()).toString())
             logger.quiet(rootDir.toPath().relativize(project.testResultsDir.toPath()).toString())
         }
-    }
+    }*/
 
     //per convertire in txt
     //build.gradle
@@ -210,7 +228,7 @@ android {
         doLast {
             println "trasforma il file"
             destDir.mkdirs()
-            def mountains = new xmlParser().parse(srcFile)
+            def mountains = new XmlParser().parse(srcFile)
             mountains.mountain.each { mountain ->
                 def name = mountain.name[0].text()
                 def height = mountain.height[0].text()
@@ -229,11 +247,18 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation files('libs\\groovy-json-4.0.0.jar')
+    implementation files('libs\\groovy-xml-4.0.0.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //implementation 'org.codehaus.groovy:groovy-all:2.4.15'
     //localGroovy()
+    // Add this line if was not added before.
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs/groovy-json-4.0.0.jar')
+    implementation files('libs/groovy-xml-4.0.0.jar')
+    implementation('org.codehaus.groovy:groovy:2.4.0:grooid')
 }
 
