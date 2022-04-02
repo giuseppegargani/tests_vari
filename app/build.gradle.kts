@@ -1,4 +1,5 @@
-
+import BuildPlugins.android
+import ConfigData.versionName
 
 /* CONCETTI
  - Android ufficiale:  Opzioni di test avanzate!!! https://developer.android.com/studio/test/advanced-test-setup
@@ -120,40 +121,83 @@
  - BUILDSRC!!!! interessante (sembra complementare a Build.gradle)!!!! https://proandroiddev.com/better-dependency-management-in-android-studio-3-5-with-gradle-buildsrcversions-7cd67dbaa5d4   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 
+/* Aggiustamenti per singolo file di build!!!!! https://docs.gradle.org/current/userguide/migrating_from_groovy_to_kotlin_dsl.html
+    - plugins: solo il nome oppure backtick se il nome e' composto
+    - minifyEnabled diventa isMinifyEnable => minifyEnabled is a property with name isMinifyEnabled.
+        https://medium.com/mindorks/migrating-gradle-build-scripts-to-kotlin-dsl-89788a4e383a
+      significato: removes dead code but does not obfuscate or optimize!!!!!!!
+
+    - proguardFiles and getDefaultProguardFile are functions.  Diventa nel modo seguente:
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+    - sourceCompatibility = JavaVersion.VERSION_1_8
+
+    - jvmTarget = https://stackoverflow.com/questions/55456176/unresolved-reference-compilekotlin-in-build-gradle-kts
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+
+    - implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+      https://stackoverflow.com/questions/54166069/how-do-you-add-local-jar-file-dependency-to-build-gradle-kt-file
+      modo idiomatico in groovy!!!!!!!!!!!!!!!!!!!!!!!
+ */
+
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id ("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdk 32
+    //compileSdk
+    compileSdkVersion(32)
 
     defaultConfig {
-        applicationId "com.example.tests_vari"
-        minSdk 24
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.example.tests_vari"
+        minSdk = 24
+        targetSdk = 32
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
-        dataBinding true
+        dataBinding = true
+    }
+    packagingOptions {
+        resources{
+            excludes.add("META-INF/DEPENDENCIES")
+            excludes.add("META-INF/LICENSE")
+            excludes.add("META-INF/LICENSE.txt")
+            excludes.add("META-INF/license.txt")
+            excludes.add("META-INF/NOTICE")
+            excludes.add("META-INF/NOTICE.txt")
+            excludes.add("META-INF/notice.txt")
+            excludes.add("META-INF/ASL2.0")
+            excludes.add("METS-INF/INDEX.LIST")
+        }
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+    /*kotlinOptions {
         jvmTarget = '1.8'
-    }
+    }*/
 
     //qui che vanno messi i cambi di configurazione di test!!!!
     /*testOptions {
@@ -247,22 +291,23 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation files('libs\\groovy-json-4.0.0.jar')
-    implementation files('libs\\groovy-xml-4.0.0.jar')
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation ("androidx.core:core-ktx:1.7.0")
+    implementation ("androidx.appcompat:appcompat:1.4.1")
+    implementation ("com.google.android.material:material:1.5.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
+    //implementation files('libs\\groovy-json-4.0.0.jar')
+    //implementation files('libs\\groovy-xml-4.0.0.jar')
+    testImplementation ("junit:junit:4.+")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
 
     //implementation 'org.codehaus.groovy:groovy-all:2.4.15'
     //localGroovy()
     // Add this line if was not added before.
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation files('libs/groovy-json-4.0.0.jar')
-    implementation files('libs/groovy-xml-4.0.0.jar')
-    implementation('org.codehaus.groovy:groovy:2.4.0:grooid')
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //implementation files('libs/groovy-json-4.0.0.jar')
+    //implementation files('libs/groovy-xml-4.0.0.jar')
+    implementation("org.codehaus.groovy:groovy:2.4.0:grooid")
 }
 
