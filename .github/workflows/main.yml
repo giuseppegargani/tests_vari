@@ -89,14 +89,14 @@ jobs:
           #xml-file: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
           #xpath: '//testcase' 
       - uses: fabasoad/yaml-json-xml-converter-action@main
-        id: xml2json
+        id: xml2yaml
         with:
           path: 'app/build/test-results/testDebugUnitTest/TEST-com.example.tests_vari.ExampleUnitTest.xml'
           from: 'xml'
-          to: 'json'
+          to: 'yaml'
       - name: Print xml2json result
         continue-on-error: true
-        run: echo "${{ steps.xml2json.outputs.data }}"
+        run: echo "${{ steps.xml2yaml.outputs.data }}"
         
       #Stampa per verificarne la correttezza e utili nel caso di problemi
       - name: echo-default-env-variables
