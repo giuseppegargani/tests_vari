@@ -219,7 +219,7 @@ android {
             def progetto = project
             logger.quiet(rootDir.toPath().relativize(project.reportsDir.toPath()).toString())
             logger.quiet(rootDir.toPath().relativize(project.testResultsDir.toPath()).toString())
-        }
+         }
      }*/
 
     //per convertire in txt
