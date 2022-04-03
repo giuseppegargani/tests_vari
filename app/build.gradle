@@ -232,10 +232,11 @@ android {
         doLast {
             println "trasforma il file"
             destDir.mkdirs()
-            def mountains = new XmlParser().parse(srcFile)
+            def input = ext.srcFile.text
+            //def mountains = new XmlSlurper().parse(srcFile)
 
             //abbiamo verificato che lo legge
-            println "eccolo $ext.srcFile  e il seguente e $mountains"
+            println "eccolo $ext.srcFile  e il seguente e $input"
 
             /*mountains.Mountain.each { mountain ->
                 def name = mountain.name[0].text()
