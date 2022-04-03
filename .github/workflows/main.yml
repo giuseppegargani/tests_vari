@@ -3,7 +3,7 @@
 name: Android CI Testing prima di push
 on: 
   push:
-    branches: [ master, main, nuova ]
+    branches: [ temp ]
   pull_request: 
     branches:  [ master, main, nuova ]
 jobs: 
