@@ -117,7 +117,7 @@
 
  - GRADLE 7.0 Migliorato la situazione!!!!1 https://gradle.org/whats-new/gradle-7/  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! vedere le caratteristiche!!!!!!
 
- - BUILDSRC!!!! interessante (sembra complementare a Build.gradle)!!!! https://proandroiddev.com/better-dependency-management-in-android-studio-3-5-with-gradle-buildsrcversions-7cd67dbaa5d4   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ - BUILDSRC!!! interessante (sembra complementare a Build.gradle)!!!! https://proandroiddev.com/better-dependency-management-in-android-studio-3-5-with-gradle-buildsrcversions-7cd67dbaa5d4   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 
 plugins {
