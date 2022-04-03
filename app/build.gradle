@@ -305,6 +305,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation files('libs/groovy-json-4.0.0.jar')
     implementation files('libs/groovy-xml-4.0.0.jar')
-    implementation('org.codehaus.groovy:groovy:2.4.0:grooid')
+    //implementation('org.codehaus.groovy:groovy:2.4.0:grooid')
 }
 
