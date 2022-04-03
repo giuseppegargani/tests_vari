@@ -61,8 +61,8 @@ jobs:
         run: ./gradlew help  
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test
-      - name: lancia task locale
-        run: ./gradlew showDirs
+      #- name: lancia task locale
+        #run: ./gradlew showDirs
         
     # Prova a leggere file locale
       - name: legge file XML
