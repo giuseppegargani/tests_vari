@@ -141,7 +141,7 @@ import ConfigData.versionName
 
     - implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
       https://stackoverflow.com/questions/54166069/how-do-you-add-local-jar-file-dependency-to-build-gradle-kt-file
-      modo idiomatico in groovy!!!!!!!!!!!!!!!!!!!!!!!
+      modo idiomatico in groovy!!!!!!!!!!!!!!!!!!!!!!
  */
 
 plugins {
