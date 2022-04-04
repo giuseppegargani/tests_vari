@@ -125,6 +125,11 @@
 
  - Come si fa' parsing dato che XmlParser e XmlSlurper sono deprecati!!!!!!!!!!!!!!!!!!!!!!!!!!!! https://www.codementor.io/@nadikasbandara/xml-parsing-using-groovy-1b3jr18h3c
 
+ - gradle test --rerun-tasks       Per ripetere un test si deve scrivere:     --RERUN-TASKS    !!!!!
+
+ - interessante https://mkyong.com/gradle/gradle-how-to-continue-build-if-test-is-failed/
+
+ - Unit test e nomi: https://stackoverflow.com/questions/3963708/gradle-how-to-display-test-results-in-the-console-in-real-time
 
  */
 
@@ -134,12 +139,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.tests_vari"
         minSdk 24
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -170,6 +175,50 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    testVariants.all { variant ->
+
+        variant.connectedInstrumentTest.doLast {
+            println "This will be executed right after our connectedInstrumentTest!"
+            println "The name of the test type: $connectedInstrumentTest.name"
+            println "The type of test $connectedInstrumentTest.class"
+        }
+    }
+
+    testOptions {
+
+        unitTests.all {
+
+            ignoreFailures = true
+
+            beforeTest { descriptor ->
+                logger.lifecycle("Beppe Running test: " + descriptor)
+            }
+            afterTest { desc, result ->
+                logger.lifecycle("************ Beppe: NOME TEST: $desc e RISULTATO TEST: $result")
+            }
+
+            beforeSuite { desc ->
+                println("Si mette in ascolto $desc")
+            }
+            afterSuite { desc, result ->
+                if (!desc.parent) { // will match the outermost suite
+                    def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
+                    def startItem = '|  ', endItem = '  |'
+                    def repeatLength = startItem.length() + output.length() + endItem.length()
+                    println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+                }
+            }
+            //granularità in console dei risultati del test (verificato e 3 corrisponde al singolo metodo)
+            testLogging {
+                minGranularity 3
+                maxGranularity 3
+            }
+            onOutput { descriptor, event ->
+                logger.lifecycle("Beppe Test: " + descriptor + " produced standard out/err: " + event.message )
+            }
+        }
     }
 
     //qui che vanno messi i cambi di configurazione di test!!!!
@@ -291,6 +340,36 @@ android {
                 println(name)
                 println(height)
             }*/
+        }
+    }
+
+    tasks.withType(Test) {
+        testLogging {
+            // set options for log level LIFECYCLE
+            events "passed", "skipped", "failed", "standardOut"
+            //events TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.STANDARD_OUT
+            exceptionFormat "full"
+            showExceptions true
+            showCauses true
+            showStackTraces true
+
+            // set options for log level DEBUG and INFO
+            debug {
+                events "started", "failed", "passed", "skipped", "standardError", "standardOut" //TestLogEvent.STARTED, TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.STANDARD_ERROR, TestLogEvent.STANDARD_OUT
+                exceptionFormat "full"
+            }
+            info.events = debug.events
+            info.exceptionFormat = debug.exceptionFormat
+
+            afterSuite { desc, result ->
+                println("Questo e' nome: ${desc } e risultato: $result")
+                /*if (!desc.parent) { // will match the outermost suite
+                    def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
+                    def startItem = '|  ', endItem = '  |'
+                    def repeatLength = startItem.length() + output.length() + endItem.length()
+                    println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+                }*/
+            }
         }
     }
 }
