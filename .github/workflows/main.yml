@@ -3,9 +3,9 @@
 name: Android CI Testing prima di push
 on: 
   push:
-    branches: [ temp ]
+    branches: [ master, main, temp ]
   pull_request: 
-    branches:  [ master, main, nuova ]
+    branches:  [ master, main, nuova, temp ]
 jobs: 
   build: 
     runs-on: macOS-latest
