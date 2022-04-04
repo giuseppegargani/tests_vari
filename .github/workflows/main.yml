@@ -167,17 +167,18 @@ jobs:
         #run: ./gradlew testDebugUnitTest --tests ExampleUnitTest.primotest
       
       #vecchio test
-      #- name: Run Instrumentation Tests (reactivecircus)
-        #uses: reactivecircus/android-emulator-runner@v2.6.1
-        #with:
-          #api-level: ${{ matrix.api-level }}
-          #arch: ${{ matrix.arch }}
-          #target: default
+      - name: Run Instrumentation Tests (reactivecircus)
+        uses: reactivecircus/android-emulator-runner@v2.6.1
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: ${{ matrix.arch }}
+          target: default
           #arch: x86
-          #profile: Nexus 6
+          profile: Nexus 6
           #script: ./gradlew connectedCheck --stacktrace  
-        #env:
-          #ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          script: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           
       #vecchio vecchio test strumentale (nella versione iniziale era stato tolto )
       #- name: Run Instrumentation Tests
