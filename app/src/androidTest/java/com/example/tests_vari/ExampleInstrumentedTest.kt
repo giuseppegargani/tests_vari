@@ -22,7 +22,7 @@ class ExampleInstrumentedTest {
         assertEquals("com.example.tests_vari", appContext.packageName)
     }
 
-    //@Test
+    @Test
     fun useAppContext2() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext

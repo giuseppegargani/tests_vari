@@ -156,6 +156,24 @@
    dopo si puo' lanciare il comando adb!!!
    gradle :{$project}:installDebugAndroidTest     esampio: nel nostro caso e' :app    !!!!! si vede lanciando le tasks in gradle (si legge il nome del sottoprogetto oppure in settings!!!)
 
+ - Proviamo ad installare l'app dentro l'emulatore  prima (andando nella cartellina dell'APK)   adb -s emulator-5554 install myapp.apk
+   gradl
+
+ - Dopo aver verificato che la strumentazione e' correttamente installata con il seguente comando      adb shell pm list instrumentation
+   Si lancia il test strumentale con il seguente comando: adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner
+   (verificato!!!!!!!)
+   come la seguente documentazione: https://stackoverflow.com/questions/21294945/error-unable-to-find-instrumentation-info-for-componentinfo   !!!!!
+
+ - vedere altre opzioni per il test strumentale da riga di comando:
+   https://developer.android.com/studio/test/command-line#AMSyntax
+   OPZIONI: https://developer.android.com/studio/test/command-line#am-instrument-options
+   -w (richiesto per poter vedere i risultati del test)
+
+ - Per eseguire solo alcuni test di una classe:
+   adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest#test1  com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner --rerun-tasks   !!!!!!
+   adesso si deve associare adb con una task gradle!!!!
+
+ - Documentazione ufficiale Orchestrator: https://androidx.de/androidx/test/orchestrator/AndroidTestOrchestrator.html
 
  */
 
