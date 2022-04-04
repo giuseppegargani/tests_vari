@@ -446,5 +446,7 @@ dependencies {
 
     //orchestrator
     androidTestUtil 'androidx.test:orchestrator:1.1.0'
+    //per le autorizzazione e permessi in test
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
 
