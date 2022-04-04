@@ -131,6 +131,32 @@
 
  - Unit test e nomi: https://stackoverflow.com/questions/3963708/gradle-how-to-display-test-results-in-the-console-in-real-time
 
+ - Eseguire condizionatamente dei test sulla base di altri test!!!! baeldung https://www.baeldung.com/junit-conditional-assume
+
+ - android-xml-run-listener (per AndroidX) e serve per stampare un documento XML con i risultati del test Strumentale!!!!!
+   https://github.com/schroepf/TestLab/blob/master/android/android-xml-run-listener/README.md
+
+ - filtrare test in androidTest: https://pspdfkit.com/blog/2020/filtering-tests-in-android/
+
+ - test strumentale avanzato: https://proandroiddev.com/advanced-ui-testing-a1fba4f45894
+
+ - PERMESSI IN INSTRUMENTED TEST!!!! https://proandroiddev.com/advanced-ui-testing-a1fba4f45894
+
+ - CLEARPACKAGEDATA: https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/runner#enable-command
+
+ - Come si installa Orchestrator: https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/runner#enable-command
+
+ - AndroidJUnitRunner documentazione ufficiale!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! https://androidx.de/androidx/test/runner/AndroidJUnitRunner.html
+   Con lista di comandi!!!!! per adb
+
+ - Per verificare la strumentazione installata: adb shell pm list instrumentation    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    E DEVE COMPARIRE IL PROPRIO PACCHETTO!!!!!!!!!!!!!!!!! oppure si deve installare!!!
+
+ - INTERESSANTE PER VERIFICARE ED INSTALLARE STRUMENTAZIONE!!! https://stackoverflow.com/questions/21294945/error-unable-to-find-instrumentation-info-for-componentinfo
+   dopo si puo' lanciare il comando adb!!!
+   gradle :{$project}:installDebugAndroidTest     esampio: nel nostro caso e' :app    !!!!! si vede lanciando le tasks in gradle (si legge il nome del sottoprogetto oppure in settings!!!)
+
+
  */
 
 plugins {
@@ -149,6 +175,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //serve a Orchestrator per cancellare tracce del test precedente
+        testInstrumentationRunnerArguments clearPackageData: 'true'
     }
     buildFeatures {
         dataBinding true
@@ -187,6 +216,9 @@ android {
     }
 
     testOptions {
+
+        //testOrchestrator
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
 
         unitTests.all {
 
@@ -393,5 +425,8 @@ dependencies {
     implementation files('libs/groovy-json-4.0.0.jar')
     implementation files('libs/groovy-xml-4.0.0.jar')
     //implementation('org.codehaus.groovy:groovy:2.4.0:grooid')
+
+    //orchestrator
+    androidTestUtil 'androidx.test:orchestrator:1.1.0'
 }
 
