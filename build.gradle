@@ -45,6 +45,8 @@
 
     - XML INSTRUMENTED TEST PLUGIN: https://github.com/schroepf/TestLab/blob/master/android/android-xml-run-listener/README.md!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       DA METTERE DENTRO UNA TASK!!!!!!!!!!!!
+
+    -
  */
 
 /* CODICE con spiegazioni
@@ -179,6 +181,8 @@ apply plugin: Eccomi
         }
     }
 }*/
+
+
 task launchComands(type:Exec) {
     //workingDir '../tomcat/bin'
 
@@ -208,11 +212,14 @@ task lancia(){
         //launchComands()
     }
 }
-task senchaBuild() {
+/*task senchaBuild {
     doLast {
-        senchaBuild_steps()
+        exec {
+            commandLine 'cmd', 'c', 'adb devices'
+        }
+        //senchaBuild_steps()
     }
-}
+}*/
 
 
 task senchaBuild_steps() {

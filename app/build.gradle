@@ -184,7 +184,7 @@
  - SI POSSONO LANCIARE PIU' COMANDI PER LA STESSA RUN di github action!!!   diversi comandi piu' o meno concatenati!!!!! (vedi sopra) e assegnare variabili!!!!!!
    o dentro github actions, oppure con concatenazione di comandi!!! (su macchina virtuale)!!!!!!
 
- - comando unico per leggere file in console: cat sdcard/Android/data/com.example.tests_vari/files/giuseppe.txt
+ - comando unico per leggere file in console: adb shell cat sdcard/android/data/com.example.tests_vari/files/giuseppe.txt    !!!!!!!!!!!!!!!
 
  */
 
@@ -431,6 +431,22 @@ android {
                     println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
                 }*/
             }
+        }
+    }
+
+    //task per leggere adb
+    task senchaBuild {
+        doLast {
+            exec {
+                //commandLine 'cmd', 'c', 'adb devices'
+                commandLine 'adb', 'shell'
+            }
+            sleep(2000)
+            exec {
+                //commandLine 'cmd', 'c', 'adb devices'
+                commandLine 'ls'
+            }
+            //senchaBuild_steps()
         }
     }
 }
