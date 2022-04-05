@@ -9,7 +9,7 @@ package com.example.tests_vari
     richiedono questa dipendenza: androidTestImplementation 'com.android.support.test:rules:1.0.2'
  */
 
-/* SI DEVONO METTERE PER ORDINE!!! con una lettera prima
+/* SI DEVONO METTERE PER ORDINE!!! con una lettera davanti
 
  */
 
