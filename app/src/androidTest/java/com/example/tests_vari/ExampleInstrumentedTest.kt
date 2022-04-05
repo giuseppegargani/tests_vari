@@ -29,6 +29,8 @@ package com.example.tests_vari
 
 
 
+
+
 import android.Manifest
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
