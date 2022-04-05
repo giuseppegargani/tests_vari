@@ -175,6 +175,8 @@
 
  - Documentazione ufficiale Orchestrator: https://androidx.de/androidx/test/orchestrator/AndroidTestOrchestrator.html
 
+ - Video su novità in AndroidTest : https://www.youtube.com/watch?v=juEkViDyzF8
+
  */
 
 plugins {
@@ -194,8 +196,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        //serve a Orchestrator per cancellare tracce del test precedente
-        testInstrumentationRunnerArguments clearPackageData: 'true'
+        //serve a Orchestrator per cancellare tracce del test precedente ATTENZIONE PERCHE' ALTRIMENTI CANCELLA IL TEST PRECEDENTE (e non si verifica)
+        //testInstrumentationRunnerArguments clearPackageData: 'true'
     }
     buildFeatures {
         dataBinding true
@@ -449,4 +451,5 @@ dependencies {
     //per le autorizzazione e permessi in test
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
+
 
