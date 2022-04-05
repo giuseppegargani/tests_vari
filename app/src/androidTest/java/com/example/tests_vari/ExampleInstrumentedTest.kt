@@ -13,6 +13,22 @@ package com.example.tests_vari
 
  */
 
+/* SI METTE UN TEMPO DI INIZIO DEL CONTEGGIO E UNO DI CHIUSURA E SI SALVANO I DATI DA QUALCHE PARTE!!!
+*/
+
+/*Si possono salvare i dati con la concatenazione di eventi, oppure in qualsiasi altro modo
+  anche assegnando variabili a gradle in github action!!!! e poi andando a mandarle su firebase
+  Ogni processo su github ha delle variabili
+*/
+
+/* Gradle opera su Macos (o Linux) e il salvataggio deve essere fatto inviando dati al sistema operativo su cui gira android studio
+    - Gradle in github actions (e' quello che lavora su sistema operativo della macchina virtuale), mentre adb lavora su emulatore
+    - si dovrebbe poter leggere i dati da adb!!! e immagazzinarli (come si fa' in locale) !!!
+    - con gradle si possono salvare i dati (restituiti da Adb)
+ */
+
+
+
 import android.Manifest
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
