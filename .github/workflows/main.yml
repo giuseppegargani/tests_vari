@@ -46,7 +46,7 @@ jobs:
       #- name: Install Android SDK
       #  uses: malinskiy/action-android/install-sdk@release/0.0.3
        
-      # Forse è questo il problema!!!! forse vanno aumentati i diritti e quindi semplicemente scompare messaggio di non poter porta
+      # Forse è questo il problema!!!! forse vanno aumentati i diritti e quindi semplicemente scompare messaggio di non poter portare
       
       #ORIGINARIAMENTE SOLO +x
       - name: Change wrapper permissions
