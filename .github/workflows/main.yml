@@ -167,7 +167,7 @@ jobs:
         #run: ./gradlew testDebugUnitTest --tests ExampleUnitTest.primotest
       
       #vecchio test
-      - name: Run Instrumentation Tests (reactivecircus)
+      - name: Run Instrumentation Tests (reactivecircus )
         uses: reactivecircus/android-emulator-runner@v2.6.1
         with:
           api-level: ${{ matrix.api-level }}
@@ -176,6 +176,7 @@ jobs:
           #arch: x86
           profile: Nexus 6
           script: ./gradlew connectedCheck --stacktrace  
+          #script: adb devices
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           
