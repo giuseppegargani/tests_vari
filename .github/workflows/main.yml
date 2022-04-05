@@ -56,9 +56,9 @@ jobs:
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1
         
-      - name: Configure Gradle
+      #- name: Configure Gradle
         # Initial gradle configuration, install dependencies, etc
-        run: ./gradlew help  
+        #run: ./gradlew help  
      
      # Prova a lanciare task locale che visualizza la directory dei risultati dei test
       #- name: lancia task locale
