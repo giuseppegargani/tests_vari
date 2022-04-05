@@ -145,7 +145,7 @@ class ExampleInstrumentedTest {
         }
     }
 
-    @Test
+    //@Test
     fun B_verificaLettura(){
         var letto = leggiConsole()
         //Log.d("giuseppeLettura", "letto dentro la funzione $letto")
