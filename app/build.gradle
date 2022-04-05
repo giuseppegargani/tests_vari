@@ -449,6 +449,15 @@ android {
             //senchaBuild_steps()
         }
     }
+
+    task customInstr {
+        doLast {
+            connectedCheck
+            /*exec {
+                commandLine 'adb shell ls'
+            }*/
+        }
+    }
 }
 
 dependencies {

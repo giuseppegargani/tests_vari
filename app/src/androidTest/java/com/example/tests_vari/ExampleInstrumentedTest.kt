@@ -62,10 +62,11 @@ class ExampleInstrumentedTest {
     //@Rule
     //var mRuntimePermissionRule = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-    @Before
+    //rimettere!!!!!!!!!!!!!!!!!!!
+    /*@Before
     fun inizializza(){
         nameTest="stringa iniziale"
-    }
+    }*/
 
     //var nameTest: MutableList<String> = mutableListOf()
 
@@ -80,7 +81,7 @@ class ExampleInstrumentedTest {
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE)*/
 
     //questa funzione scrive in console sulla base della stringa ed evento
-    fun scriviConsole(nomeTest: String, boolean: Boolean = true){
+    /*fun scriviConsole(nomeTest: String, boolean: Boolean = true){
         //Log.d("giuseppe", "lanciata scrittura in console")
         val context= InstrumentationRegistry.getInstrumentation().targetContext
         val path: File = context.getExternalFilesDir(null)!!
@@ -108,7 +109,7 @@ class ExampleInstrumentedTest {
         //Log.d("giuseppeLettura", "****** stringa letta $txt")
         reader.close()
         return txt
-    }
+    }*/
 
     @Test
     fun A_useAppContext() {
@@ -119,15 +120,15 @@ class ExampleInstrumentedTest {
             assertEquals("com.example.tests_vari", appContext.packageName)
 
             //una volta verificato si dovrebbe poter scrivere
-            /*val context= InstrumentationRegistry.getInstrumentation().targetContext
+            val context= InstrumentationRegistry.getInstrumentation().targetContext
             val path: File = context.getExternalFilesDir(null)!!
             Log.d("giuseppe", "nome directory $path")
             val file = File(path, "giuseppe.txt")
             val stream = FileOutputStream(file)
             stream.use { stream ->
-                stream.write("Nome del Test: $nameTest".toByteArray())
-            }*/
-            scriviConsole("A_useAppContextTest")
+                stream.write("A_useAppContextTest successo".toByteArray())
+            }
+            //scriviConsole("A_useAppContextTest")
             //Log.d("giuseppe", "Test $nameTest riuscito!!!")
         }
         catch (exception: Exception){
@@ -136,7 +137,7 @@ class ExampleInstrumentedTest {
     }
 
     //@Test
-    fun useAppContextB() {
+    /*fun useAppContextB() {
         nameTest+= "useAppContextB"
         try {
             // Context of the app under test.
@@ -169,5 +170,5 @@ class ExampleInstrumentedTest {
         var letto = leggiConsole()
         //Log.d("giuseppeLettura", "letto dentro la funzione $letto")
         assertEquals("Nome del Test: ecchime", letto)
-    }
+    }*/
 }
