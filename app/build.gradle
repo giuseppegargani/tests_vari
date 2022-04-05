@@ -181,6 +181,11 @@
 
  - https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions    interessante su Github actions!!!!!!!
 
+ - SI POSSONO LANCIARE PIU' COMANDI PER LA STESSA RUN di github action!!!   diversi comandi piu' o meno concatenati!!!!! (vedi sopra) e assegnare variabili!!!!!!
+   o dentro github actions, oppure con concatenazione di comandi!!! (su macchina virtuale)!!!!!!
+
+ - comando unico per leggere file in console: cat sdcard/Android/data/com.example.tests_vari/files/giuseppe.txt
+
  */
 
 plugins {

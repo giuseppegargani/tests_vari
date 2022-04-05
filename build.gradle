@@ -1,15 +1,50 @@
 /* Documentqzione
     - Come configurare task test sotto del plugin android: https://github.com/kotest/kotest/issues/622
+
     - test selettivo DA LINEA DI COMANDO: gradle testDebugUnitTest --tests ExampleUnitTest
+
     - Viene stampato anche una lista dei risultati!!! su html
+
     - Si devono registrare le task fatte con groovy ( per essere applicate nel progetto di riferimento!!!)
+    ls
     - come si costruisce una custom task https://docs.gradle.org/current/userguide/custom_tasks.html
+
     - tutorial espressioni regolari di groovy: https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/
+
     - Vogella tutorial gradle con esercizi: https://www.vogella.com/tutorials/GradleTutorial/article.html
-    DEBUG DI GRADLE IN ANDROID STUDIO
+      DEBUG DI GRADLE IN ANDROID STUDIO
+
     - https://stackoverflow.com/questions/22017433/debugging-gradle-build-files-in-intellij-android-studio
+
     - https://www.jetbrains.com/help/idea/getting-started-with-groovy.html#test_groovy
-    - Project.apply    usato per applicare il plugin al progett
+
+    - Project.apply    usato per applicare il plugin al progetto
+
+    - TASK EXEC per inviare comandi (https://stackoverflow.com/questions/35561014/gradle-execute-multiple-commands-from-task)
+      Si puo' fare eseguire piu' linee di comando
+      documentazione ufficiale: https://docs.gradle.org/current/dsl/org.gradle.api.tasks.Exec.html
+      esempio pratico (task exec con DEPENDS ON: https://stackoverflow.com/questions/33759583/how-to-enable-read-write-contacts-permission-when-run-connected-android-test)
+
+    - Oppure emulatore pronto: https://stackoverflow.com/questions/37024316/how-to-control-android-emulator-from-gradle
+
+    - DOCUMENTAZIONE VARIABILI AMBIENTALI IN GITHUB ACTIONS: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+      Si possono anche modificare variabili ambientali!!!!
+
+    - Semplice lista di comandi ADB da remoto: https://gist.github.com/hivivo/ee4663565a290253ffc22a4c1eb7b8aa
+
+    - ORDINE DI ESECUZIONE DEI TEST STRUMENTALI!!!!!  https://stackoverflow.com/questions/25308301/test-order-with-espresso
+
+    - INSTRUMENTATIONREGISTRY (to get context e altro): https://developer.android.com/reference/androidx/test/InstrumentationRegistry
+
+    - INSTRUMENTATION TAG in Manifest!!!!!!! https://developer.android.com/guide/topics/manifest/instrumentation-element
+
+    - per il context in Instrumented Test: InstrumentationRegistry.getInstrumentation().targetContext
+      https://stackoverflow.com/questions/52924431/androidx-test-instrumentationregistry-is-deprecated
+
+    - Custom Task Runner (per override Runner): https://androidx.de/androidx/test/runner/AndroidJUnitRunner.html
+
+    - XML INSTRUMENTED TEST PLUGIN: https://github.com/schroepf/TestLab/blob/master/android/android-xml-run-listener/README.md!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      DA METTERE DENTRO UNA TASK!!!!!!!!!!!!
  */
 
 /* CODICE con spiegazioni
@@ -144,5 +179,52 @@ apply plugin: Eccomi
         }
     }
 }*/
+task launchComands(type:Exec) {
+    //workingDir '../tomcat/bin'
+
+    //on windows:
+    //commandLine 'cmd', '/c', 'adb devices'
+    //commandLine 'cmd', '/c', 'adb shell'
+
+    commandLine 'cmd', '/c', 'adb devices'
+
+    //commandLine 'cmd', '/c', 'adb devices'.execute()
+
+    //commandLine 'cmd', '/c', 'adb devices'
+
+    //on linux
+    //commandLine './stop.sh'
+
+    //store the output instead of printing to the console:
+    //standardOutput = new ByteArrayOutputStream()
+
+    //extension method stopTomcat.output() can be used to obtain the output:
+    //ext.output = {return standardOutput.toString()}
+}
+
+task lancia(){
+    doLast {
+        launchComands()
+        //launchComands()
+    }
+}
+task senchaBuild() {
+    doLast {
+        senchaBuild_steps()
+    }
+}
+
+
+task senchaBuild_steps() {
+    exec {
+        //workingDir 'src/main/app/MYAPP'
+        commandLine 'cmd', 'c', 'adb devices'
+    }
+    /*exec {
+        //workingDir 'src/main/app/MYOTHERAPP'
+        commandLine 'cmd', 'c', 'adb devices'
+    }*/
+
+}
 
 

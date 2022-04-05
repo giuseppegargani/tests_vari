@@ -27,6 +27,7 @@ package com.example.tests_vari
     - con gradle si possono salvare i dati (restituiti da Adb)
  */
 
+// SI DEVE METTERE UN SALVATAGGIO FINALE (AFTER)!!!!!dei file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! e occhio a config di non azzerare macchina dopo ogni test!!!!!!!!!
 
 
 
@@ -79,7 +80,7 @@ class ExampleInstrumentedTest {
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE)*/
 
     //questa funzione scrive in console sulla base della stringa ed evento
-    fun scriviConsole(nomeTest: String){
+    fun scriviConsole(nomeTest: String, boolean: Boolean = true){
         //Log.d("giuseppe", "lanciata scrittura in console")
         val context= InstrumentationRegistry.getInstrumentation().targetContext
         val path: File = context.getExternalFilesDir(null)!!
@@ -87,7 +88,7 @@ class ExampleInstrumentedTest {
         val file = File(path, "giuseppe.txt")
         val stream = FileOutputStream(file)
         stream.use { stream ->
-            stream.write("Nome del Test: $nomeTest".toByteArray())
+            stream.write("$nomeTest  success \n".toByteArray())
         }
     }
 
@@ -126,7 +127,7 @@ class ExampleInstrumentedTest {
             stream.use { stream ->
                 stream.write("Nome del Test: $nameTest".toByteArray())
             }*/
-            scriviConsole("ecchime")
+            scriviConsole("A_useAppContextTest")
             //Log.d("giuseppe", "Test $nameTest riuscito!!!")
         }
         catch (exception: Exception){
