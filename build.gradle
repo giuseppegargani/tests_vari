@@ -183,7 +183,7 @@ apply plugin: Eccomi
 }*/
 
 
-task launchComands(type:Exec) {
+/*task launchComands(type:Exec) {
     //workingDir '../tomcat/bin'
 
     //on windows:

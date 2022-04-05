@@ -235,14 +235,14 @@ android {
         jvmTarget = '1.8'
     }
 
-    testVariants.all { variant ->
+    /*testVariants.all { variant ->
 
         variant.connectedInstrumentTest.doLast {
             println "This will be executed right after our connectedInstrumentTest!"
             println "The name of the test type: $connectedInstrumentTest.name"
             println "The type of test $connectedInstrumentTest.class"
         }
-    }
+    }*/
 
     testOptions {
 
@@ -351,7 +351,7 @@ android {
 
     //per convertire in txt
     //build.gradle
-    task transformXml {
+    /*task transformXml {
         ext.srcFile = file('mountains.xml')
         ext.destDir = new File(buildDir, 'generated')
         inputs.file srcFile
@@ -365,7 +365,7 @@ android {
             //abbiamo verificato che lo legge
             println "eccolo $ext.srcFile  e il seguente e $input"
 
-            /*mountains.Mountain.each { mountain ->
+            mountains.Mountain.each { mountain ->
                 def name = mountain.name[0].text()
                 def height = mountain.height[0].text()
                 //def destFile = new File(destDir, "${name}.txt")
@@ -373,11 +373,10 @@ android {
                 println "eccolo e il seguente"
                 println(name)
                 println(height)
-            }*/
+            }
         }
-    }
+    }*/
 
-    //
     task leggiTest {
         ext.srcFile = file('mountains.xml')
         ext.destDir = new File(buildDir, 'generated')
