@@ -186,6 +186,10 @@
 
  - comando unico per leggere file in console: adb shell cat sdcard/android/data/com.example.tests_vari/files/giuseppe.txt    !!!!!!!!!!!!!!!
 
+ - adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner
+ && adb pull sdcard/android/data/com.example.tests_vari/files/giuseppe.txt --debug
+
+
  */
 
 plugins {
@@ -449,12 +453,20 @@ android {
         }
     }
 
-    task customInstr {
+    task customInstr (type: Exec) {
+
+                //esegue il comando
+                commandLine 'adb', 'shell', 'am', 'instrument', '-w', '-e', 'class', 'com.example.tests_vari.ExampleInstrumentedTest', 'com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner'//, '&&', 'adb', 'shell', 'cat', 'sdcard/android/data/com.example.tests_vari/files/giuseppe.txt'
+                //commandLine 'adb shell am instrument -w -e class com.example.tests_vari.ExampleInstrumentedTest com.example.tests_vari.test/androidx.test.runner.AndroidJUnitRunner && adb pull sdcard/android/data/com.example.tests_vari/files/giuseppe.txt'
+
         doLast {
-            connectedCheck
-            /*exec {
-                commandLine 'adb shell ls'
-            }*/
+            exec {
+                //copia il file da emulatore a directory locale
+                commandLine 'adb', 'pull', 'sdcard/android/data/com.example.tests_vari/files/giuseppe.txt', '../'
+            }
+                //e legge per verifica
+                String fileContents = new File('giuseppe.txt').text
+                println(fileContents)
         }
     }
 }
