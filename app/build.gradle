@@ -224,7 +224,15 @@
 
     - TEST E COMANDO BASH PER VERIFICARE SE ESISTE UN FILE E COMPIERE DELLE AZIONI!!! https://linuxize.com/post/bash-check-if-file-exists/
 
-    - SCARICARE FIREBASE CLI E LAVORARCI
+    - SCARICARE FIREBASE CLI E LAVORARCI e TOOLS
+      https://firebase.google.com/docs/cli
+      https://github.com/firebase/firebase-tools
+      https://github.com/marketplace/actions/github-action-for-firebase
+      https://firebase.blog/posts/2017/12/read-and-write-your-realtime-database     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      https://firebase.google.com/docs/database/web/read-and-write#web-version-9_1
+
+    - ESPRESSIONI COPNDIZIONALI IN BASH!!!!!
+      https://linuxize.com/post/bash-source-command/#:~:text=The%20source%20command%20reads%20and,Linux%20and%20UNIX%20operating%20systems.
 
     - SI POSSONO SCRIVERE ACTIONS ANCHE IN PYTHON!!!!!!
       https://github.com/cicirello/python-github-action-template
@@ -237,6 +245,12 @@
       per una variabile dopo di due punti si devono mettere le doppie virgolette foo: "{{ variabile }}"
 
     - Le doppie virgolette permettono Escape!!!!
+
+    - Si puo' fare debug con il programma Cli di Firebase!!! da scaricare
+
+    - UPLOAD E DOWNLOAD ARTIFACT!!!! https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
+
+    - SHARE E ARTIFACTS: https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
  */
 
 plugins {
