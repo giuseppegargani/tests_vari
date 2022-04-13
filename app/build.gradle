@@ -219,6 +219,24 @@
       https://stackoverflow.com/questions/7427262/how-to-read-a-file-into-a-variable-in-shell
 
     - ESEMPI GITHUB ACTIONS: https://www.actionsbyexample.com/context-expressions.html
+
+    - CARATTERI SPECIALI IN BASH https://linuxize.com/post/bash-printf-command/
+
+    - TEST E COMANDO BASH PER VERIFICARE SE ESISTE UN FILE E COMPIERE DELLE AZIONI!!! https://linuxize.com/post/bash-check-if-file-exists/
+
+    - SCARICARE FIREBASE CLI E LAVORARCI
+
+    - SI POSSONO SCRIVERE ACTIONS ANCHE IN PYTHON!!!!!!
+      https://github.com/cicirello/python-github-action-template
+      https://github.com/actions/setup-python   si possono anche installare pacchetti Python
+
+    - LINTER E PYTHON
+      https://www.redhat.com/sysadmin/yaml-tips
+
+    - SINTESI YAML interessante: https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+      per una variabile dopo di due punti si devono mettere le doppie virgolette foo: "{{ variabile }}"
+
+    - Le doppie virgolette permettono Escape!!!!
  */
 
 plugins {
