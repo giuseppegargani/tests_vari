@@ -34,7 +34,6 @@ package com.example.tests_vari
   - https://junit.org/junit4/javadoc/4.12/org/junit/rules/TestWatcher.html
   - https://junit.org/junit4/javadoc/latest/org/junit/rules/TestWatcher.html
   - https://stackoverflow.com/questions/473401/get-name-of-currently-executing-test-in-junit-4
-
  */
 
 
