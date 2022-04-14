@@ -29,6 +29,14 @@ package com.example.tests_vari
 
 // SI DEVE METTERE UN SALVATAGGIO FINALE (AFTER)!!!!!dei file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! e occhio a config di non azzerare macchina dopo ogni test!!!!!!!!!
 
+/* TESTWATCHER!!!
+  - https://www.baeldung.com/junit-testwatcher
+  - https://junit.org/junit4/javadoc/4.12/org/junit/rules/TestWatcher.html
+  - https://junit.org/junit4/javadoc/latest/org/junit/rules/TestWatcher.html
+  - https://stackoverflow.com/questions/473401/get-name-of-currently-executing-test-in-junit-4
+
+ */
+
 
 
 
@@ -42,6 +50,9 @@ import org.junit.*
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.rules.TestRule
+import org.junit.rules.TestWatcher
+import org.junit.runner.Description
 import org.junit.runners.MethodSorters
 import java.io.File
 import java.lang.Exception
@@ -58,6 +69,13 @@ import java.io.FileReader
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ExampleInstrumentedTest {
     private lateinit var nameTest: String
+
+    @Rule
+    var watcher: TestRule = object : TestWatcher() {
+        protected override fun starting(description: Description) {
+            System.out.println("********************************* Starting test: " + description.getMethodName())
+        }
+    }
 
     //@Rule
     //var mRuntimePermissionRule = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE)
