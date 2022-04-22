@@ -272,6 +272,10 @@
     - https://www.vogella.com/tutorials/AndroidLibraryProjects/article.html
  */
 
+/* UCOODE!!!!!!!! SIGNIFICATO: https://www.urbandictionary.com/define.php?term=Coode
+
+ */
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
