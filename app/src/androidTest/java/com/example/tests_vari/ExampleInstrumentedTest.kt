@@ -34,10 +34,26 @@ package com.example.tests_vari
   - https://junit.org/junit4/javadoc/4.12/org/junit/rules/TestWatcher.html
   - https://junit.org/junit4/javadoc/latest/org/junit/rules/TestWatcher.html
   - https://stackoverflow.com/questions/473401/get-name-of-currently-executing-test-in-junit-4
+  - Evento con fine dei tests: https://stackoverflow.com/questions/9942825/how-to-tell-when-junit-finishes-by-just-using-a-testwatcher
+
+  Concetti: Le eccezioni non influenza il comportamento dei tests....non si propagano
+            Si deve fare override dei diversi metodi!!!! https://www.baeldung.com/junit-testwatcher
+
+            - AndroidManifest.xml
+            Manifest per custom Test Runner!!!!!  AndroidManifest.xml!!!!!!
  */
 
+/* RUNLISTENER E MANIFEST!!!!
+    https://automationchronicles.com/using-runlistener-in-android-tests/
+ */
 
+/* Link interessanti:
+    - UI testing...serie di video interessanti su youtube: https://www.youtube.com/watch?v=j8jQq-kYgDU&list=PLgCYzUzKIBE_ZuZzgts135GuLQNX5eEPk
+ */
 
+/* 21 aprile 2022 - TestWatcher e libreria!!! come si sviluppano
+
+ */
 
 import android.Manifest
 import android.util.Log

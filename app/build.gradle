@@ -253,6 +253,16 @@
     - SHARE E ARTIFACTS: https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
  */
 
+/* RUNLISTENER E TESTWATCHER  ( E utilizzo RunListener da linea di comando ADB ):
+    - https://automationchronicles.com/using-runlistener-in-android-tests/
+    - https://developer.android.com/guide/topics/manifest/instrumentation-element.html    (ADB)
+    - https://developer.android.com/reference/androidx/test/runner/AndroidJUnitRunner
+    - METODI: https://automationchronicles.com/using-runlistener-in-android-tests/
+
+    - CANNOT RESOLVE SYMBOL    NON E' IMPORTANTE!!!!!! https://stackoverflow.com/questions/28665257/androidtargetpackage-cannot-resolve-symbol
+
+ */
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
