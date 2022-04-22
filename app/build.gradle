@@ -268,12 +268,30 @@
     - TARGETTIZZARE UNA APPLICAZIONE: https://source.android.com/compatibility/tests/development/instr-app-e2e   Documentazione ufficiale!!!
  */
 
-/* CUSTOM LIBRARY:
+/* CUSTOM LIBRARY (AAR e manifest) :
     - https://www.vogella.com/tutorials/AndroidLibraryProjects/article.html
+    - AAR e Manifest:
  */
 
-/* UCOODE!!!!!!!! SIGNIFICATO: https://www.urbandictionary.com/define.php?term=Coode
+/* UCOODE!!!!!!!! SIGNIFICATO: https://www.urbandictionary.com/define.php?term=Coode    ENFASI SU LINGUAGGIO (coding) (piuttosto che programmazione) ma pensiero strutturato!!!!!
 
+ */
+
+/* CODICE ESEMPIO PER MANIFEST RunListener
+    <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.verifica">
+    <instrumentation
+        android:name="androidx.test.runner.AndroidJUnitRunner"
+        android:functionalTest="false"
+        android:handleProfiling="false"
+        android:label="Tests for com.example.myapplication"
+        android:targetPackage="com.example.verifica">
+        <meta-data
+            android:name="listener"
+            android:value="com.example.verifica.TestListener" />
+    </instrumentation>
+</manifest>
  */
 
 plugins {
