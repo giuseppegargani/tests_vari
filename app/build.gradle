@@ -198,6 +198,9 @@
 
  */
 
+/* JETPACK COMPOSE E COMPOSABLE: https://www.youtube.com/watch?v=qvDo0SKR8-k
+*/
+
 /* CONCETTI GITHUB ACTIONS:3
 
     - Differenza tra Id e Name: https://stackoverflow.com/questions/66762605/what-is-the-difference-between-name-and-id-in-github-actions
@@ -251,6 +254,8 @@
     - UPLOAD E DOWNLOAD ARTIFACT!!!! https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
 
     - SHARE E ARTIFACTS: https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
+    
+    - 15 TOP LIBRARIES: https://www.youtube.com/watch?v=ABU4iIAoWKc
  */
 
 /* RUNLISTENER E TESTWATCHER  ( E utilizzo RunListener da linea di comando ADB ):
@@ -268,9 +273,15 @@
     - TARGETTIZZARE UNA APPLICAZIONE: https://source.android.com/compatibility/tests/development/instr-app-e2e   Documentazione ufficiale!!!
  */
 
+/* CUSTOM ANNOTATIONS: https://medium.com/androidiots/writing-your-own-annotation-processors-in-android-1fa0cd96ef11
+ */
+
 /* CUSTOM LIBRARY (AAR e manifest) :
     - https://www.vogella.com/tutorials/AndroidLibraryProjects/article.html
     - AAR e Manifest:
+    - JITPACK eventuali errori: https://stackoverflow.com/questions/33058358/jitpack-io-failed-to-resolve-github-repo
+    - Scaricare manualmente Aar: https://stackoverflow.com/questions/69106175/how-to-download-aar-and-pom-file-from-jitpack-io-manually
+    - Documentazione: https://developer.android.com/studio/projects/android-library
  */
 
 /* UCOODE!!!!!!!! SIGNIFICATO: https://www.urbandictionary.com/define.php?term=Coode    ENFASI SU LINGUAGGIO (coding) (piuttosto che programmazione) ma pensiero strutturato!!!!!
