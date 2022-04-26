@@ -277,6 +277,7 @@
  */
 
 /* CUSTOM LIBRARY (AAR e manifest) :
+    - Interessante:   https://flobiz.in/blog/create-your-own-android-library-publish-it/
     - https://www.vogella.com/tutorials/AndroidLibraryProjects/article.html
     - AAR e Manifest:
     - JITPACK eventuali errori: https://stackoverflow.com/questions/33058358/jitpack-io-failed-to-resolve-github-repo
