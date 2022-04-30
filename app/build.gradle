@@ -256,6 +256,9 @@
     - SHARE E ARTIFACTS: https://levelup.gitconnected.com/github-actions-how-to-share-data-between-jobs-fc1547defc3e
     
     - 15 TOP LIBRARIES: https://www.youtube.com/watch?v=ABU4iIAoWKc
+
+    - @JvmStatic https://www.baeldung.com/kotlin/jvmstatic-annotation
+
  */
 
 /* RUNLISTENER E TESTWATCHER  ( E utilizzo RunListener da linea di comando ADB ):
@@ -316,6 +319,27 @@
     OPPURE Si definisce una parent Data class per somme linee (e si usa una altra voce generica con JsonDeserializer)
  */
 
+/* CUSTOMTASK DOPO IL TEST STRUMENTALE:    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    LINK!!!!!!: https://www.androidbugfix.com/2022/03/what-are-list-of-tasks-that.html
+
+    testVariants.all { variant ->
+        variant.connectedInstrumentTest.doLast {
+            println "This will be executed right after our connectedInstrumentTest!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            println "The name of the test type: $connectedInstrumentTest.name"
+            println "The type of test $connectedInstrumentTest.class"
+        }
+        connectedAndroidTest.finalizedBy(saluti)
+        assembleDebugAndroidTest.finalizedBy(saluti)
+    }
+
+ */
+
+/* GRADLE interessanti:
+    - http://sorcersoft.org/project/site/gradle/userguide/more_about_tasks.html
+
+ */
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -371,6 +395,14 @@ android {
             println "The type of test $connectedInstrumentTest.class"
         }
     }*/
+
+    /* TestOptions!!!!!!!!!!!!!!!!!!!!
+        https://developer.android.com/reference/tools/gradle-api/4.2/com/android/build/api/dsl/TestOptions
+
+        - animationDisabled!!!!!!!
+
+        -
+     */
 
     testOptions {
 
